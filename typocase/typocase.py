@@ -1,56 +1,5 @@
-from typing import List
-from enum import Enum
-
-
-class SpecChars(Enum):
-    WHITE_SPACE = " "
-    UNDER_SCORE = "_"
-    DASH = "-"
-    SLASH = "/"
-    DOT = "."
-
-
-class StringCompounds:
-
-    WHITE_SPACE = SpecChars.WHITE_SPACE.value
-
-    def __init__(self, string: str):
-        self.string = string
-
-    def extract_compounds(self) -> List[str]:
-        compounds = self.extract_compounds_specchar_sep()
-        if len(compounds) == 1:
-            compounds = self.extract_compounds_uppercase_sep()
-
-        return compounds
-
-    def extract_compounds_uppercase_sep(self) -> List[str]:
-        compounds = "".join([
-            char if char.islower() else f"{self.WHITE_SPACE}{char}"
-            for char in self.string if char.isalnum()
-        ]).split(self.WHITE_SPACE)
-
-        return self.trim_compounds(compounds)
-
-    def extract_compounds_specchar_sep(self) -> List[str]:
-        compounds = "".join([
-            char if char.isalnum() else self.WHITE_SPACE
-            for char in self.string
-        ]).split(self.WHITE_SPACE)
-
-        return self.trim_compounds(compounds)
-
-    @staticmethod
-    def trim_compounds(compounds: List[str]) -> List[str]:
-        """Remove empty compounds and pass other compounds to lowercase
-
-        Args:
-            compounds: List of compounds
-
-        Returns:
-            List of compounds
-        """
-        return [comp.lower() for comp in compounds if comp]
+from typocase.string_compounds import StringCompounds
+from typocase.models import SpecChars
 
 
 class TypoCase:
