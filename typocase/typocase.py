@@ -10,8 +10,6 @@ class TypoCase:
             self.string
         ).extract_compounds()
 
-        print(self.compounds)
-
     def join_compounds(self, sep: SpecChars) -> str:
         return f"{sep.value}".join(self.compounds)
 
@@ -40,8 +38,3 @@ class TypoCase:
 
     def constant_case(self):
         return self.snake_case().upper()
-
-
-if __name__ == "__main__":
-    tc = TypoCase("martin.tovmassian@protonmail.com")
-    print(tc.dot_case())
