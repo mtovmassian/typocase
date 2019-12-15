@@ -8,10 +8,10 @@ class TypoCase:
         self.string = string
         self.compounds = StringCompounds(
             self.string
-        ).extract_compounds()
+        ).extract()
 
-    def join_compounds(self, sep: SpecChars) -> str:
-        return f"{sep.value}".join(self.compounds)
+    def join_comps_by_special_char(self, specchar: SpecChars) -> str:
+        return f"{specchar.value}".join(self.compounds)
 
     def pascal_case(self) -> str:
         return "".join([
@@ -25,16 +25,16 @@ class TypoCase:
         return pascal_case[0].lower() + pascal_case[1:]
 
     def snake_case(self) -> str:
-        return self.join_compounds(SpecChars.UNDER_SCORE)
+        return self.join_comps_by_special_char(SpecChars.UNDER_SCORE)
 
     def kebab_case(self) -> str:
-        return self.join_compounds(SpecChars.DASH)
+        return self.join_comps_by_special_char(SpecChars.DASH)
 
     def path_case(self):
-        return self.join_compounds(SpecChars.SLASH)
+        return self.join_comps_by_special_char(SpecChars.SLASH)
 
     def dot_case(self):
-        return self.join_compounds(SpecChars.DOT)
+        return self.join_comps_by_special_char(SpecChars.DOT)
 
     def constant_case(self):
         return self.snake_case().upper()
