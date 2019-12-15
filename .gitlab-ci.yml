@@ -1,0 +1,14 @@
+stages:
+  - test
+
+test-lib:
+  image: python:3.8-alpine
+  stage: test
+  script:
+    - pip install pytest
+    - pytest -v
+  only:
+    refs:
+      - master
+      - develop
+      - feature/gitlab-ci
