@@ -3,4 +3,4 @@
 """
 __version__ = "0.0.1"
 
-# from .typocase import TypoCase
+from typocase.typo_case import TypoCase
