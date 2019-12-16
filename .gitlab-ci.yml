@@ -11,7 +11,7 @@ format-lib:
   stage: format
   script:
     - pip install black
-    - black typocase/
+    - black --check -v typocase/
   only:
     refs:
       - master
