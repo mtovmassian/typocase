@@ -4,7 +4,7 @@
 
 ___
 
-Lightweight library written in idiomatic Python (no regular expressions) , which translate string into various typography conventions.
+Lightweight, idiomatic and regular expressions free, Python library for translating string into various typography conventions.
 
 ## How it works
 
@@ -15,9 +15,6 @@ Lightweight library written in idiomatic Python (no regular expressions) , which
   - pascal case
   - camel case
   - kebab case
-  - dot case
-  - path case
-  - ...
 
 ## Install
 

@@ -10,19 +10,19 @@ from typocase.string_compounds import StringCompounds as SComps
         # null string
         (None, []),
         # special char separator
-        ("abc_def_ghi", ["abc", "def", "ghi"]),
-        ("abc/def/ghi", ["abc", "def", "ghi"]),
-        ("abc@def.ghi", ["abc", "def", "ghi"]),
+        ("abc123_def456_ghi789", ["abc123", "def456", "ghi789"]),
+        ("abc123/def456/ghi789", ["abc123", "def456", "ghi789"]),
+        ("abc123@def456.ghi789", ["abc123", "def456", "ghi789"]),
         # multi special chars separator
-        ("abc_|_def__@__ghi", ["abc", "def", "ghi"]),
+        ("abc123_|_def456__@__ghi789", ["abc123", "def456", "ghi789"]),
         # special char separator & leading and trailing special chars
-        ("_abc_def_ghi_", ["abc", "def", "ghi"]),
+        ("_abc123_def456_ghi789_", ["abc123", "def456", "ghi789"]),
         # special char separator & upper case letters
-        ("ABC_DEF_GHI", ["abc", "def", "ghi"]),
+        ("ABC123_DEF456_GHI789", ["ABC123", "DEF456", "GHI789"]),
         # no special chars
-        ("abcdefghi", ["abcdefghi"]),
+        ("abc123def456ghi789", ["abc123def456ghi789"]),
         # no special chars & uppercase letters
-        ("abcDefGhi", ["abcdefghi"])
+        ("abc123Def456Ghi789", ["abc123Def456Ghi789"])
     ]
 )
 def test_split_on_special_chars(input_string, expected_string):
@@ -36,18 +36,24 @@ def test_split_on_special_chars(input_string, expected_string):
         # null string
         (None, []),
         # uppercase letter separator
-        ("AbcDefGhi", ["abc", "def", "ghi"]),
-        ("abcDefGhi", ["abc", "def", "ghi"]),
+        ("Abc123Def456Ghi789", ["Abc123", "Def456", "Ghi789"]),
+        ("abc123Def456Ghi789", ["abc123", "Def456", "Ghi789"]),
         # uppercase letter separator & leading and trailing special chars
-        ("_AbcDefGhi_", ["abc", "def", "ghi"]),
+        ("_Abc123Def456Ghi789_", ["Abc123", "Def456", "Ghi789"]),
         # only uppercase letters
-        ("ABCDEFGHI", ["a", "b", "c", "d", "e", "f", "g", "h", "i"]),
+        (
+            "ABC123DEF456GHI789",
+            ["A", "B", "C123", "D", "E", "F456", "G", "H", "I789"]
+        ),
         # uppercase letter separator & special char separator
-        ("A_b_c_D_e_f_G_h_i", ["abc", "def", "ghi"]),
+        (
+            "A_b_c_1_2_3_D_e_f_4_5_6_G_h_i_7_8_9",
+            ["Abc123", "Def456", "Ghi789"]
+        ),
         # no uppercase letters
-        ("abcdefghi", ["abcdefghi"]),
+        ("abc123def456ghi789", ["abc123def456ghi789"]),
         # no uppercase letters & special char separator
-        ("abc_def_ghi", ["abcdefghi"]),
+        ("abc123_def456_ghi789", ["abc123def456ghi789"]),
     ]
 )
 def test_split_on_uppercase_letters(input_string, expected_string):
@@ -63,9 +69,9 @@ def test_split_on_uppercase_letters(input_string, expected_string):
         # compounds & empty compounds
         (["", "abc", "", "def", "", "ghi", ""], ["abc", "def", "ghi"]),
         # compounds & uppercase letters
-        (["Abc", "Def", "Ghi"], ["abc", "def", "ghi"]),
+        (["Abc", "Def", "Ghi"], ["Abc", "Def", "Ghi"]),
         # compounds & empty compounds & uppercase letters
-        (["", "Abc", "", "Def", "", "Ghi"], ["abc", "def", "ghi"]),
+        (["", "Abc", "", "Def", "", "Ghi"], ["Abc", "Def", "Ghi"]),
         # only empty compounds
         (["", "", ""], []),
     ]
