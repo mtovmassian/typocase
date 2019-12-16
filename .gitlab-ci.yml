@@ -1,8 +1,24 @@
+image: python:3.8-alpine
+
+before_script:
+  - apk update && apk add --no-cache build-base linux-headers
+
 stages:
+  - format
   - test
 
+format-lib:
+  stage: format
+  script:
+    - pip install black
+    - black typocase/
+  only:
+    refs:
+      - master
+      - develop
+      - feature/gitlab-ci
+
 test-lib:
-  image: python:3.8-alpine
   stage: test
   script:
     - pip install pytest
