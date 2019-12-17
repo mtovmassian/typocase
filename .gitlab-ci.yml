@@ -4,14 +4,16 @@ before_script:
   - apk update && apk add --no-cache build-base linux-headers
 
 stages:
-  - format
+  - check-format
   - test
 
-format-lib:
-  stage: format
+check-format-lib:
+  stage: check-format
   script:
-    - pip install black
-    - black --check -v typocase/
+    - python -m pip install black isort mypy
+    - python -m black --check -v typocase/
+    - python -m isort  --recursive --check-only --verbose
+    - python -m mypy --pretty --ignore-missing-imports .
   only:
     refs:
       - master

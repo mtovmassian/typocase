@@ -3,16 +3,24 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[dev-packages]
-flake8 = "*"
-rope = "*"
+[pipenv]
+allow_prereleases = true
 
-[packages]
+[dev-packages]
+black = "*"
+flake8 = "*"
+isort = "*"
+mypy = "*"
 pytest = "*"
+pytest-cov = "*"
+rope = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.8"
 
 [scripts]
-format = "black typocase/"
-test = "pytest -sv --disable-warnings"
+check-format = "black"
+check-imports = "isort  --recursive --check-only --verbose"
+check-types = "mypy --pretty --ignore-missing-imports ."
+test = "pytest --capture=no --verbose --cov-report xml --cov=typocase tests/"

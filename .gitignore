@@ -1,1 +1,4 @@
 .vscode
+.coverage
+coverage.xml
+.mypy_cache/

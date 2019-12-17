@@ -1,6 +1,5 @@
 from typing import List
 
-
 from typocase.models import SpecChars
 
 
@@ -34,7 +33,7 @@ class StringCompounds:
         """
         compounds = self.split_on_special_chars()
         if len(compounds) == 1:
-            compounds = self.extract_by_uppercase_sep()
+            compounds = self.split_on_uppercase_letters()
 
         return compounds
 

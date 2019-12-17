@@ -1,5 +1,5 @@
-from typocase.string_compounds import StringCompounds
 from typocase.models import SpecChars
+from typocase.string_compounds import StringCompounds
 
 
 class TypoCase:
@@ -14,7 +14,7 @@ class TypoCase:
         return "".join([comp[0].upper() + comp[1:] for comp in self.compounds])
 
     def camel_case(self) -> str:
-        pascal_case = self.pascal()
+        pascal_case = self.pascal_case()
 
         return pascal_case[0].lower() + pascal_case[1:]
 
