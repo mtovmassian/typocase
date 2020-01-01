@@ -16,12 +16,15 @@ setup(
         + "(no regular expressions), that aims to translate string "
         + "into various typography conventions."
     ),
+    long_description_content_type="text/markdown",
     long_description=open("README.md").read(),
+    include_package_data=True,
+    url="https://github.com/mtovmassian/typocase",
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
-        "Topic :: Programming tool :: String conversion",
-        "License :: MIT",
+        "Topic :: Software Development :: Build Tools",
+        "License :: OSI Approved :: MIT License",
     ],
 )
