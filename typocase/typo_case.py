@@ -1,26 +1,20 @@
-from typocase.string_compounds import StringCompounds
 from typocase.models import SpecChars
+from typocase.string_compounds import StringCompounds
 
 
 class TypoCase:
-
     def __init__(self, string: str):
         self.string = string
-        self.compounds = StringCompounds(
-            self.string
-        ).extract()
+        self.compounds = StringCompounds(self.string).extract()
 
     def join_comps_by_special_char(self, specchar: SpecChars) -> str:
         return f"{specchar.value}".join(self.compounds)
 
     def pascal_case(self) -> str:
-        return "".join([
-            comp[0].upper() + comp[1:]
-            for comp in self.compounds
-        ])
+        return "".join([comp[0].upper() + comp[1:] for comp in self.compounds])
 
     def camel_case(self) -> str:
-        pascal_case = self.pascal()
+        pascal_case = self.pascal_case()
 
         return pascal_case[0].lower() + pascal_case[1:]
 

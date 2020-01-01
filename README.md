@@ -4,7 +4,7 @@
 
 ___
 
-Lightweight library written in idiomatic Python (no regular expressions) , which translate string into various typography conventions.
+Lightweight library written in idiomatic Python (no regular expressions), that aims to translate string into various typography conventions.
 
 ## How it works
 
@@ -38,3 +38,8 @@ Lightweight library written in idiomatic Python (no regular expressions) , which
 'abc-def-ghi'
 ```
 
+## License
+This software is released under the MIT LICENSE.
+
+## Author
+Martin Tovmassian

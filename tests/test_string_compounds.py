@@ -1,10 +1,10 @@
 import pytest
-
 from typocase.string_compounds import StringCompounds as SComps
 
 
 @pytest.mark.parametrize(
-    "input_string, expected_string", [
+    "input_string, expected_string",
+    [
         # empty string
         ("", []),
         # null string
@@ -22,15 +22,16 @@ from typocase.string_compounds import StringCompounds as SComps
         # no special chars
         ("abcdefghi", ["abcdefghi"]),
         # no special chars & uppercase letters
-        ("abcDefGhi", ["abcdefghi"])
-    ]
+        ("abcDefGhi", ["abcdefghi"]),
+    ],
 )
 def test_split_on_special_chars(input_string, expected_string):
     assert SComps(input_string).split_on_special_chars() == expected_string
 
 
 @pytest.mark.parametrize(
-    "input_string, expected_string", [
+    "input_string, expected_string",
+    [
         # empty string
         ("", []),
         # null string
@@ -48,14 +49,15 @@ def test_split_on_special_chars(input_string, expected_string):
         ("abcdefghi", ["abcdefghi"]),
         # no uppercase letters & special char separator
         ("abc_def_ghi", ["abcdefghi"]),
-    ]
+    ],
 )
 def test_split_on_uppercase_letters(input_string, expected_string):
     assert SComps(input_string).split_on_uppercase_letters() == expected_string
 
 
 @pytest.mark.parametrize(
-    "input_compounds, expected_compounds", [
+    "input_compounds, expected_compounds",
+    [
         # no compounds
         ([], []),
         # compounds
@@ -68,7 +70,7 @@ def test_split_on_uppercase_letters(input_string, expected_string):
         (["", "Abc", "", "Def", "", "Ghi"], ["abc", "def", "ghi"]),
         # only empty compounds
         (["", "", ""], []),
-    ]
+    ],
 )
 def test_trim(input_compounds, expected_compounds):
     assert SComps.trim(input_compounds) == expected_compounds

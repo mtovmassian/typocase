@@ -1,6 +1,5 @@
 from typing import List
 
-
 from typocase.models import SpecChars
 
 
@@ -19,7 +18,7 @@ class StringCompounds:
         self.string = string if string else ""
 
     def __repr__(self):
-        return f"{self.__class__.__name__}(string=\"{self.string}\")"
+        return f'{self.__class__.__name__}(string="{self.string}")'
 
     def extract(self) -> List[str]:
         """Try to extract compounds based on special chars as separators.
@@ -34,7 +33,7 @@ class StringCompounds:
         """
         compounds = self.split_on_special_chars()
         if len(compounds) == 1:
-            compounds = self.extract_by_uppercase_sep()
+            compounds = self.split_on_uppercase_letters()
 
         return compounds
 
@@ -47,10 +46,13 @@ class StringCompounds:
         Returns:
             Trimmed list of compounds
         """
-        compounds = "".join([
-            char if char.islower() else f"{self.WHITE_SPACE}{char}"
-            for char in self.string if char.isalnum()
-        ]).split(self.WHITE_SPACE)
+        compounds = "".join(
+            [
+                char if char.islower() else f"{self.WHITE_SPACE}{char}"
+                for char in self.string
+                if char.isalnum()
+            ]
+        ).split(self.WHITE_SPACE)
 
         return self.trim(compounds)
 
@@ -63,10 +65,9 @@ class StringCompounds:
         Returns:
             Trimmed list of compounds
         """
-        compounds = "".join([
-            char if char.isalnum() else self.WHITE_SPACE
-            for char in self.string
-        ]).split(self.WHITE_SPACE)
+        compounds = "".join(
+            [char if char.isalnum() else self.WHITE_SPACE for char in self.string]
+        ).split(self.WHITE_SPACE)
 
         return self.trim(compounds)
 
