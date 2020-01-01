@@ -15,11 +15,16 @@ class TypoCase:
 
     def camel_case(self) -> str:
         pascal_case = self.pascal_case()
+        if len(pascal_case) == 0:
+            return pascal_case
 
         return pascal_case[0].lower() + pascal_case[1:]
 
     def snake_case(self) -> str:
         return self.join_comps_by_special_char(SpecChars.UNDER_SCORE)
+
+    def constant_case(self):
+        return self.snake_case().upper()
 
     def kebab_case(self) -> str:
         return self.join_comps_by_special_char(SpecChars.DASH)
@@ -29,6 +34,3 @@ class TypoCase:
 
     def dot_case(self):
         return self.join_comps_by_special_char(SpecChars.DOT)
-
-    def constant_case(self):
-        return self.snake_case().upper()
