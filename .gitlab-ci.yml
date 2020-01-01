@@ -4,11 +4,11 @@ before_script:
   - apk update && apk add --no-cache build-base linux-headers
 
 stages:
-  - check-format
+  - format
   - test
 
-check-format-lib:
-  stage: check-format
+format:
+  stage: format
   script:
     - python -m pip install black isort mypy
     - python -m black --check -v typocase/
@@ -20,7 +20,7 @@ check-format-lib:
       - develop
       - feature/gitlab-ci
 
-test-lib:
+test:
   stage: test
   script:
     - pip install pytest

@@ -20,7 +20,8 @@ pre-commit = "*"
 python_version = "3.8"
 
 [scripts]
-check-format = "black"
+check-format = "black --check --verbose ."
 check-imports = "isort  --recursive --check-only --verbose"
 check-types = "mypy --pretty --ignore-missing-imports ."
-test = "pytest --capture=no --verbose --cov-report xml --cov=typocase tests/"
+test = "pytest --capture=no --verbose --disable-warnings"
+test-cov = "pytest --capture=no --verbose --disable-warnings --cov-report xml --cov=typocase tests/"
